@@ -25,7 +25,8 @@ Remote Work Habit Tracker Pro is a fun, interactive, and gamified web applicatio
 
 🚧 Work in Progress
 
-This project is currently under active development. We're constantly adding new features and improvements, so stay tuned for updates!
+This project is currently under active development. 
+We're constantly adding new features and improvements, so stay tuned for updates!
 
 🛠️ Technologies Used
 
@@ -52,5 +53,6 @@ We welcome contributions! Feel free to open issues or submit pull requests to he
 Are you using the Remote Work Habit Tracker? 
 We'd love to hear about your experience! Share your success stories or suggestions for improvement.
 
-Remember, great remote work habits are built one day at a time. 
+Remember, great remote work habits are built one day at a time.
+
 Let's make every day count! 💪🖥️☕
