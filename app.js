@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     createdAt: new Date().toISOString(),
                     streak: 0,
                     lastTracked: null,
-                    isNew: true // Flag for new habits
+                    isNew: true 
                 };
                 habits.push(newHabit);
                 localStorage.setItem('habits', JSON.stringify(habits));
@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 aboutLink.addEventListener('click', (e) => {
     e.preventDefault();
-    showNotification('Remote Work Habit Tracker Pro helps you build better remote work habits!');
+    showNotification('Remote Work Habit Tracker V1 helps you build better remote work habits!');
 });
 
 privacyLink.addEventListener('click', (e) => {
