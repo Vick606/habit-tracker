@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const habitsList = document.getElementById('habits-list');
     const notification = document.getElementById('notification');
     const progressBar = document.getElementById('progress-bar');
+    const aboutLink = document.getElementById('about-link');
+    const privacyLink = document.getElementById('privacy-link');
 
     let habits = JSON.parse(localStorage.getItem('habits')) || [];
 
@@ -207,4 +209,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Make functions global so they can be called from inline event handlers
     window.deleteHabit = deleteHabit;
     window.trackHabit = trackHabit;
+});
+aboutLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    showNotification('Remote Work Habit Tracker Pro helps you build better remote work habits!');
+});
+
+privacyLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    showNotification('We respect your privacy. No personal data is collected or stored online.');
 });
