@@ -129,3 +129,25 @@ button:hover {
 .celebrate {
     animation: celebrate 0.5s ease;
 }
+#app-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+}
+
+#app-footer nav {
+    margin: 10px 0;
+}
+
+#app-footer nav a {
+    margin: 0 10px;
+    color: #5cb85c;
+    text-decoration: none;
+}
+
+#app-footer nav a:hover {
+    text-decoration: underline;
+}
