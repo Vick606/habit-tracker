@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const customHabit = document.getElementById('custom-habit');
     const addHabitButton = document.getElementById('add-habit');
     const habitsList = document.getElementById('habits-list');
+    const notification = document.getElementById('notification');
+    const progressBar = document.getElementById('progress-bar');
 
     let habits = JSON.parse(localStorage.getItem('habits')) || [];
 
@@ -109,6 +111,92 @@ document.addEventListener('DOMContentLoaded', () => {
             renderHabits();
         }
     }
+        function showNotification(message) {
+            notification.textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+    
+        function updateProgressBar() {
+            const totalHabits = habits.length;
+            const completedHabits = habits.filter(habit => habit.lastTracked === new Date().toDateString()).length;
+            const progress = (completedHabits / totalHabits) * 100 || 0;
+            progressBar.style.width = `${progress}%`;
+        }
+    
+        function renderHabits() {
+            habitsList.innerHTML = '';
+            habits.forEach((habit, index) => {
+                const habitElement = document.createElement('div');
+                habitElement.className = 'habit-card';
+                habitElement.innerHTML = `
+                    <h3>${habit.name}</h3>
+                    <p>Category: ${habit.category}</p>
+                    <p>Streak: ${habit.streak} days</p>
+                    <button onclick="trackHabit(${index})">Track</button>
+                    <button onclick="deleteHabit(${index})">Delete</button>
+                `;
+                habitsList.appendChild(habitElement);
+                
+                // Add animation for new habits
+                if (habit.isNew) {
+                    habitElement.classList.add('new');
+                    delete habit.isNew;
+                }
+            });
+            updateProgressBar();
+        }
+    
+        function addHabit() {
+            const category = habitCategory.value;
+            const habitName = predefinedHabits.value || customHabit.value;
+            if (category && habitName) {
+                const newHabit = {
+                    name: habitName,
+                    category: category,
+                    createdAt: new Date().toISOString(),
+                    streak: 0,
+                    lastTracked: null,
+                    isNew: true // Flag for new habits
+                };
+                habits.push(newHabit);
+                localStorage.setItem('habits', JSON.stringify(habits));
+                customHabit.value = '';
+                predefinedHabits.value = '';
+                renderHabits();
+                showNotification('New habit added successfully!');
+            }
+        }
+    
+        function deleteHabit(index) {
+            habits.splice(index, 1);
+            localStorage.setItem('habits', JSON.stringify(habits));
+            renderHabits();
+            showNotification('Habit deleted successfully!');
+        }
+    
+        function trackHabit(index) {
+            const habit = habits[index];
+            const today = new Date().toDateString();
+            if (habit.lastTracked !== today) {
+                habit.streak++;
+                habit.lastTracked = today;
+                localStorage.setItem('habits', JSON.stringify(habits));
+                renderHabits();
+                showNotification(`Great job! You've maintained a ${habit.streak}-day streak!`);
+                
+                // Celebration animation
+                const habitCard = habitsList.children[index];
+                habitCard.classList.add('celebrate');
+                setTimeout(() => {
+                    habitCard.classList.remove('celebrate');
+                }, 500);
+            } else {
+                showNotification('You have already tracked this habit today!');
+            }
+        }
 
     habitCategory.addEventListener('change', updatePredefinedHabits);
     addHabitButton.addEventListener('click', addHabit);
