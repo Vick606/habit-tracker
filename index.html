@@ -9,17 +9,23 @@
 <body>
     <div id="app">
         <h1>Remote Work Habit Tracker V1</h1>
-        <form id="habit-form">
-            <input type="text" id="habit-input" placeholder="Enter a new habit">
+        <div id="habit-selector">
+            <h2>Add a New Habit</h2>
             <select id="habit-category">
+                <option value="">Select Category</option>
                 <option value="work">Work-related</option>
                 <option value="development">Professional Development</option>
                 <option value="health">Health and Wellness</option>
                 <option value="balance">Work-life Balance</option>
                 <option value="productivity">Productivity</option>
+                <option value="homeoffice">Home Office Management</option>
             </select>
-            <button type="submit">Add Habit</button>
-        </form>
+            <select id="predefined-habits">
+                <option value="">Select a predefined habit or add custom</option>
+            </select>
+            <input type="text" id="custom-habit" placeholder="Or enter a custom habit">
+            <button id="add-habit">Add Habit</button>
+        </div>
         <div id="habits-list"></div>
     </div>
     <script src="app.js"></script>
